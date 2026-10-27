@@ -31,7 +31,7 @@ const projectCoreList: readonly ProjectCore[] = [
         github: "https://github.com/WaleedAnjum1",
         live: "https://play.google.com/store/apps/details?id=co.appdev.udharmaster&hl=en&pli=1",
         featured: true,
-        year: "2024",
+        year: "2026",
         image: "/images/projects/udharmaster.png",
     },
     {
@@ -46,9 +46,9 @@ const projectCoreList: readonly ProjectCore[] = [
         ],
         tech: ["React.js", "TypeScript", "Vite", "Material UI", "Python", "FastAPI", "PostgreSQL"],
         github: "https://github.com/WaleedAnjum1",
-        live: "https://www.reteamenergy.com/",
-        featured: true,
-        year: "2024",
+        live: "https://dev.reteamenergy.com/",
+        featured: false,
+        year: "2026",
         image: "/images/projects/reteam-energy.png",
     },
     {
@@ -63,9 +63,9 @@ const projectCoreList: readonly ProjectCore[] = [
         ],
         tech: ["Python", "FastAPI", "Celery", "Redis", "Hugging Face", "Whisper-TTS", "RAG"],
         github: "https://github.com/WaleedAnjum1",
-        live: "https://beremote.com/",
-        featured: true,
-        year: "2024",
+        live: "",
+        featured: false,
+        year: "2026",
         image: "/images/projects/beremote.png",
     },
     {
@@ -82,7 +82,7 @@ const projectCoreList: readonly ProjectCore[] = [
         github: "https://github.com/WaleedAnjum1",
         live: "https://covechildcare.co.uk/",
         featured: true,
-        year: "2023",
+        year: "2025",
         image: "/images/projects/cove-childcare.png",
     },
     {
@@ -98,8 +98,8 @@ const projectCoreList: readonly ProjectCore[] = [
         tech: ["React", "TypeScript", "Tailwind CSS", "Accessibility (a11y)", "REST APIs"],
         github: "https://github.com/WaleedAnjum1",
         live: "http://coveadultcare.co.uk/",
-        featured: false,
-        year: "2024",
+        featured: true,
+        year: "2026",
         image: "/images/projects/cove-adultcare.png",
     },
     {
@@ -116,7 +116,7 @@ const projectCoreList: readonly ProjectCore[] = [
         github: "https://github.com/WaleedAnjum1",
         live: "https://araarchitect.co.uk/",
         featured: false,
-        year: "2024",
+        year: "2026",
         image: "/images/projects/ara-architect.png",
     },
     {
@@ -132,8 +132,8 @@ const projectCoreList: readonly ProjectCore[] = [
         tech: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "SEO Architecture"],
         github: "https://github.com/WaleedAnjum1",
         live: "https://masroorlaw.com/",
-        featured: false,
-        year: "2024",
+        featured: true,
+        year: "2026",
         image: "/images/projects/masroor-law.png",
     },
     {
@@ -149,8 +149,8 @@ const projectCoreList: readonly ProjectCore[] = [
         tech: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Eventbrite API"],
         github: "https://github.com/WaleedAnjum1",
         live: "https://awakenwithateka.com/",
-        featured: false,
-        year: "2024",
+        featured: true,
+        year: "2026",
         image: "/images/projects/awaken-with-ateka.png",
     },
     {
@@ -167,7 +167,7 @@ const projectCoreList: readonly ProjectCore[] = [
         github: "https://github.com/WaleedAnjum1",
         live: "https://iclear.vteamslabs.com/",
         featured: false,
-        year: "2023",
+        year: "2025",
         image: "/images/projects/iclear.png",
     },
     {
@@ -199,9 +199,9 @@ const projectCoreList: readonly ProjectCore[] = [
         ],
         tech: ["Next.js", "TypeScript", "Tailwind CSS", "TanStack Query", "Chart.js"],
         github: "https://github.com/WaleedAnjum1",
-        live: "https://beremote.com/",
+        live: "",
         featured: false,
-        year: "2024",
+        year: "2025",
         image: "/images/projects/mashroom-medical.jpg",
     },
 ];
@@ -214,8 +214,15 @@ function attachDescription(core: ProjectCore): Project {
     return { ...core, description };
 }
 
-export const projects: readonly Project[] = projectCoreList.map(attachDescription);
+const rawProjects: readonly Project[] = projectCoreList.map(attachDescription);
+
+// Sort so that all featured projects appear first, followed by the rest
+export const projects: readonly Project[] = [...rawProjects].sort((a, b) => {
+    if (a.featured === b.featured) return 0;
+    return a.featured ? -1 : 1;
+});
 
 export const getProjectBySlug = (slug: string): Project | null => {
     return projects.find((project) => project.slug === slug) ?? null;
 };
+

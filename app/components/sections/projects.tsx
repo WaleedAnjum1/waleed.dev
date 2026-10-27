@@ -21,8 +21,8 @@ if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const FEATURED_COUNT = 4;
 const DESKTOP_MQ = "(min-width: 1024px)";
+
 
 function categoryLabel(project: Project): string {
     const primary = project.tech[0] ?? "Build";
@@ -215,7 +215,11 @@ const ProjectsDesktopGallery = memo(function ProjectsDesktopGallery({
 export default function Projects() {
     const shootModeOn = useShootModeOn();
     const router = useRouter();
-    const featured = useMemo(() => projects.slice(0, FEATURED_COUNT), []);
+    const featured = useMemo(() => {
+        const featuredList = projects.filter((p) => p.featured);
+        return featuredList.length > 0 ? featuredList : projects.slice(0, 4);
+    }, []);
+    const featuredCount = featured.length;
     const sectionRef = useRef<HTMLElement>(null);
     const viewportRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
@@ -241,7 +245,7 @@ export default function Projects() {
 
             const st = pinnedScrollTriggerRef.current;
             if (st) {
-                const denom = Math.max(FEATURED_COUNT - 1, 1);
+                const denom = Math.max(featuredCount - 1, 1);
                 const progress = index / denom;
                 const targetScroll = st.start + (st.end - st.start) * progress;
                 window.scrollTo({ top: targetScroll, behavior: "smooth" });
@@ -249,7 +253,7 @@ export default function Projects() {
             lastScrubIndexRef.current = index;
             setActiveIndex(index);
         },
-        [shootModeOn],
+        [shootModeOn, featuredCount],
     );
 
     const goToProject = useCallback(
@@ -328,7 +332,7 @@ export default function Projects() {
                 if (!viewport || !track) return () => {};
 
                 const pinScrollPx = () =>
-                    Math.round(window.innerHeight * (1.85 + FEATURED_COUNT * 0.42));
+                    Math.round(window.innerHeight * (1.85 + featuredCount * 0.42));
 
                 const tl = gsap.fromTo(
                     track,
@@ -351,11 +355,11 @@ export default function Projects() {
                             onUpdate: (self) => {
                                 const p = self.progress;
                                 const idx =
-                                    FEATURED_COUNT <= 1
+                                    featuredCount <= 1
                                         ? 0
                                         : Math.min(
-                                              Math.round(p * (FEATURED_COUNT - 1)),
-                                              FEATURED_COUNT - 1,
+                                              Math.round(p * (featuredCount - 1)),
+                                              featuredCount - 1,
                                           );
                                 scrubQueuedIdxRef.current = idx;
                                 if (scrubRafRef.current !== 0) return;
