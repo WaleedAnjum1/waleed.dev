@@ -47,3 +47,8 @@ scripts/
 # local profile scratch documents
 GITHUB_PROFILE_README.md
 /Waleed_Anjum_Resume.docx
+
+# brag video launch outputs and build caches
+brag-output/*.mp4
+brag-output/**/.hyperframes/
+

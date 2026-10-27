@@ -2,39 +2,50 @@
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.4-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38BDF8?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
-[![GSAP](https://img.shields.io/badge/GSAP-3.12-green?style=flat&logo=greensock)](https://greensock.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS_v4-38BDF8?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
+[![Three.js](https://img.shields.io/badge/Three.js-R3F-black?style=flat&logo=three.js)](https://threejs.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-3.14-green?style=flat&logo=greensock)](https://greensock.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-black?style=flat&logo=framer)](https://www.framer.com/motion/)
 
-A high-performance, minimalist brutalist portfolio engineered for **Waleed Anjum** — Senior Software Engineer specializing in scalable full-stack web applications, conversational AI systems, and high-throughput backend architectures.
+A high-performance, minimalist brutalist portfolio website engineered for **Waleed Anjum** — Senior Software Engineer specializing in scalable full-stack web applications, applied conversational AI systems, and high-throughput backend architectures.
 
 ---
 
-## 🌟 Highlights & Architecture
+## 🌟 Key Features & Architecture
 
-- **Next.js 16 (Turbopack) & App Router**: Fully static pre-rendered SSG architecture with dynamic detail routing (`/projects/[slug]`).
-- **Applied AI & Enterprise Showcase**: Complete showcase of production platforms (Udharmaster conversational AI ledger, ReTeam energy assessment engine, VoiceClone AI voice conversion, Cove digital childcare & adult care, Masroor Law, ARA Architect, and Awaken with Ateka).
-- **Interactive Brutalist UI**: Smooth GSAP ScrollTrigger timeline gallery, 3D interactive hero portrait, retro terminal shoot-mode easter egg, and fluid micro-interactions.
-- **Theme Support**: Seamless light/dark mode persistence via `next-themes`.
+- **Next.js 16 (App Router & Turbopack)**: Blazing fast static site generation (SSG) with optimized pre-rendering and dynamic case study routing (`/projects/[slug]`).
+- **Interactive 3D Experiences & Easter Eggs**:
+  - **3D Paintball Gun Mode**: Interactive Three.js / React Three Fiber Splat/Shoot mechanic with custom `.glb` model and physics effects.
+  - **Interactive Hero Portrait**: Dynamic cursor-responsive hero visuals with Lenis smooth scrolling.
+- **Applied AI & Enterprise Case Studies**:
+  - **Udharmaster**: Conversational AI ledger & billing platform powered by Ollama LLMs & Whisper STT.
+  - **ReTeam Energy**: Real-time energy analytics & assessment engine reducing calculation overhead by 40%.
+  - **VoiceClone AI**: Multilingual RAG voice conversion pipeline preserving natural speaker timbre.
+  - **Cove Care Suite**: Specialized digital workflows for adult care and childcare management.
+- **Design System & Micro-Interactions**:
+  - Monochromatic editorial brutalist styling powered by Tailwind CSS v4.
+  - Kinetic marquee badges, GSAP ScrollTrigger timeline reveals, and Lenis smooth scrolling.
+  - Dark / Light mode system persistence with zero flash of unstyled content (`next-themes`).
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) 16 (App Router, Turbopack)
+- **Framework**: [Next.js](https://nextjs.org/) 16 (App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animation & Interactions**: [GSAP](https://greensock.com/) + ScrollTrigger, [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+- **3D Graphics & Postprocessing**: [Three.js](https://threejs.org/), `@react-three/fiber`, `@react-three/drei`
+- **Animation & Motion**: [GSAP](https://greensock.com/) + ScrollTrigger, [Framer Motion](https://www.framer.com/motion/), `@studio-freight/lenis`
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/), `tw-animate-css`
+- **UI Components & Icons**: [Radix UI](https://www.radix-ui.com/), [Lucide React](https://lucide.dev/)
 
 ---
 
-## 🚀 Running Locally
+## 🚀 Getting Started
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/WaleedAnjum1/portfolio-v3.git
-   cd portfolio-v3
+   git clone https://github.com/WaleedAnjum1/waleed.dev.git
+   cd waleed.dev
    ```
 
 2. **Install dependencies**:
@@ -42,7 +53,7 @@ A high-performance, minimalist brutalist portfolio engineered for **Waleed Anjum
    npm install
    ```
 
-3. **Start the development server**:
+3. **Start the local development server**:
    ```bash
    npm run dev
    ```
@@ -57,6 +68,8 @@ A high-performance, minimalist brutalist portfolio engineered for **Waleed Anjum
 
 ## 📬 Contact & Connect
 
-- **GitHub**: [github.com/WaleedAnjum1](https://github.com/WaleedAnjum1)
-- **LinkedIn**: [linkedin.com/in/waleed-anjum-dev](https://linkedin.com/in/waleed-anjum-dev/)
+- **Portfolio**: [waleed.dev](https://waleed.dev)
+- **GitHub**: [@WaleedAnjum1](https://github.com/WaleedAnjum1)
+- **LinkedIn**: [Waleed Anjum](https://linkedin.com/in/waleed-anjum-dev/)
 - **Email**: [waleedanjum936@gmail.com](mailto:waleedanjum936@gmail.com)
+

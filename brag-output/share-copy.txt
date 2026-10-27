@@ -1,0 +1,6 @@
+Portfolio drop: Built a minimalist brutalist showcase for my work as a Senior Full-Stack & Applied AI Engineer.
+
+Featuring Next.js 16 (Turbopack SSG), interactive 3D physics (React Three Fiber shoot mode), kinetic GSAP timelines, and real production AI case studies including Udharmaster (conversational LLM ledger) and ReTeam Energy.
+
+Check it out live: https://waleed.dev
+Source & case studies: https://github.com/WaleedAnjum1/waleed.dev

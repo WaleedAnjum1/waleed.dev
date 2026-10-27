@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Waleed Anjum Portfolio Launch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ground: #09090b;
+        --surface: #18181b;
+        --border: #3f3f46;
+        --ink: #ffffff;
+        --dim-text: #9ca3af;
+        --muted: #d1d5db;
+        --accent: #38bdf8;
+        --footer-color: #e5e7eb;
+        --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--ground);
+        color: var(--ink);
+        font-family: var(--font-display);
+        -webkit-font-smoothing: antialiased;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 50%, #18181b 0%, #09090b 100%);
+      }
+      .grid-bg {
+        position: absolute;
+        inset: 0;
+        background-size: 60px 60px;
+        background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 90px 140px;
+        pointer-events: none;
+      }
+      .mono-badge {
+        font-family: var(--font-mono);
+        font-size: 28px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      .mono-badge::before {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 14px var(--accent);
+      }
+      .huge-title {
+        font-size: 108px;
+        font-weight: 700;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+      }
+      .huge-title .dim {
+        color: var(--dim-text);
+      }
+      .subtitle {
+        font-size: 34px;
+        font-weight: 400;
+        color: var(--muted);
+        margin-top: 24px;
+        max-width: 950px;
+        line-height: 1.4;
+      }
+      .tag-row {
+        display: flex;
+        gap: 16px;
+        margin-top: 36px;
+      }
+      .tag {
+        font-family: var(--font-mono);
+        font-size: 28px;
+        padding: 10px 24px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        border-radius: 9999px;
+        color: #ffffff;
+      }
+      .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+        margin-top: 36px;
+      }
+      .project-card {
+        background: rgba(24, 24, 27, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      }
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .card-title {
+        font-size: 38px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+      }
+      .card-tag {
+        font-family: var(--font-mono);
+        font-size: 28px;
+        color: var(--accent);
+      }
+      .card-desc {
+        font-size: 28px;
+        color: var(--muted);
+        line-height: 1.45;
+        margin: 20px 0;
+      }
+      .card-stack {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .card-pill {
+        font-family: var(--font-mono);
+        font-size: 28px;
+        background: #27272a;
+        border: 1px solid #52525b;
+        padding: 8px 18px;
+        border-radius: 8px;
+        color: #ffffff;
+      }
+      .portrait-box {
+        position: absolute;
+        right: 140px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 440px;
+        height: 560px;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 2px solid #52525b;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      }
+      .portrait-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .portrait-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(9,9,11,0.85) 0%, transparent 60%);
+      }
+      .portrait-caption {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        font-family: var(--font-mono);
+        font-size: 28px;
+        color: #ffffff;
+      }
+      .footer-badge {
+        position: absolute;
+        bottom: 36px;
+        left: 140px;
+        right: 140px;
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: 28px;
+        color: var(--footer-color);
+        border-top: 1px solid var(--border);
+        padding-top: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="20"
+      data-width="1920"
+      data-height="1080"
+    >
+      <audio
+        id="bg-audio"
+        class="clip"
+        src="assets/music/track.mp3"
+        data-start="0"
+        data-duration="20"
+        preload="auto"
+      ></audio>
+
+      <div class="grid-bg"></div>
+
+      <!-- Scene 1: The Hook (0 - 5.0s) -->
+      <div id="scene-1" class="scene clip" data-start="0" data-duration="5.0" data-hold>
+        <div class="mono-badge" id="s1-badge">01 / Senior Software & Applied AI Engineer</div>
+        <h1 class="huge-title" id="s1-title">
+          Waleed<br/>
+          <span class="dim">Anjum</span>
+        </h1>
+        <p class="subtitle" id="s1-sub">
+          Architecting scalable full-stack applications, high-throughput backend infrastructure, and production AI systems.
+        </p>
+        <div class="tag-row" id="s1-tags">
+          <div class="tag">Next.js 16</div>
+          <div class="tag">Applied AI & LLMs</div>
+          <div class="tag">Interactive 3D / R3F</div>
+        </div>
+
+        <div class="portrait-box" id="s1-portrait">
+          <img src="assets/images/heropic.jpeg" alt="Waleed Anjum" />
+          <div class="portrait-overlay"></div>
+          <div class="portrait-caption">Waleed Anjum — Lahore, PK</div>
+        </div>
+      </div>
+
+      <!-- Scene 2: Interactive Craft & 3D (5.0s - 10.0s) -->
+      <div id="scene-2" class="scene clip" data-start="5.0" data-duration="5.0" data-hold>
+        <div class="mono-badge">02 / Design Engineering & Physics</div>
+        <h1 class="huge-title">
+          Brutalist<br/>
+          <span class="dim">Aesthetics</span>
+        </h1>
+        <p class="subtitle">
+          Built with an interactive 3D paintball gun canvas, GSAP timeline reveals, and buttery smooth Lenis scrolling.
+        </p>
+        <div class="cards-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 48px;">
+          <div class="project-card" style="padding: 28px;">
+            <div class="card-tag">3D CANVAS ENGINE</div>
+            <div class="card-title" style="font-size: 32px; margin-top: 12px;">Shoot Mode</div>
+            <div class="card-desc">Interactive Three.js physics with custom .glb modeling.</div>
+          </div>
+          <div class="project-card" style="padding: 28px;">
+            <div class="card-tag">PERFORMANCE FIRST</div>
+            <div class="card-title" style="font-size: 32px; margin-top: 12px;">Next.js 16</div>
+            <div class="card-desc">Turbopack pre-rendering and dynamic case-study routes.</div>
+          </div>
+          <div class="project-card" style="padding: 28px;">
+            <div class="card-tag">FLUID MOTION</div>
+            <div class="card-title" style="font-size: 32px; margin-top: 12px;">GSAP & Framer</div>
+            <div class="card-desc">ScrollTrigger timeline galleries with micro-interactions.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 3: Enterprise AI Case Studies (10.0s - 15.5s) -->
+      <div id="scene-3" class="scene clip" data-start="10.0" data-duration="5.5" data-hold>
+        <div class="mono-badge">03 / Production Case Studies</div>
+        <h1 class="huge-title" style="font-size: 80px;">
+          Applied AI in <span class="dim">Production</span>
+        </h1>
+        <div class="cards-grid">
+          <div class="project-card">
+            <div>
+              <div class="card-header">
+                <div class="card-title">Udharmaster</div>
+                <div class="card-tag">AI Ledger Platform</div>
+              </div>
+              <div class="card-desc">
+                Voice chatbot managing automated billing & accounting via Ollama LLMs and Whisper STT.
+              </div>
+            </div>
+            <div class="card-stack">
+              <span class="card-pill">Laravel</span>
+              <span class="card-pill">Ollama LLMs</span>
+              <span class="card-pill">Whisper STT</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div>
+              <div class="card-header">
+                <div class="card-title">ReTeam Energy</div>
+                <div class="card-tag">Energy Engine</div>
+              </div>
+              <div class="card-desc">
+                Real-time energy savings calculation engine cutting assessment time by 60%.
+              </div>
+            </div>
+            <div class="card-stack">
+              <span class="card-pill">React.js</span>
+              <span class="card-pill">TypeScript</span>
+              <span class="card-pill">FastAPI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: Outro & Call to Action (15.5s - 20.0s) -->
+      <div id="scene-4" class="scene clip" style="text-align: center; align-items: center;" data-start="15.5" data-duration="4.5" data-hold>
+        <div class="mono-badge" style="justify-content: center;">Available for Senior Engineering Roles</div>
+        <h1 class="huge-title" style="font-size: 115px; margin-top: 10px;">
+          waleed.dev
+        </h1>
+        <p class="subtitle" style="text-align: center; margin-top: 20px; font-size: 34px;">
+          Explore interactive case studies, benchmarks, and source code.
+        </p>
+        <div class="tag-row" style="justify-content: center; margin-top: 40px;">
+          <div class="tag" style="background: rgba(56, 189, 248, 0.2); border-color: var(--accent); color: var(--accent); font-weight: 700; font-size: 30px;">
+            github.com/WaleedAnjum1
+          </div>
+          <div class="tag" style="font-size: 30px;">
+            linkedin.com/in/waleed-anjum-dev
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-badge">
+        <span>PORTFOLIO SHOWCASE • WALEED ANJUM</span>
+        <span>NEXT.JS 16 • THREE.JS • TAILWIND CSS</span>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Scene 1 Animation (0 - 5.0s)
+      tl.fromTo("#s1-badge", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.2);
+      tl.fromTo("#s1-title", { opacity: 0, y: 40, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power4.out" }, 0.4);
+      tl.fromTo("#s1-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.7);
+      tl.fromTo("#s1-tags .tag", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, stagger: 0.1, duration: 0.5, ease: "back.out(1.5)" }, 0.9);
+      tl.fromTo("#s1-portrait", { opacity: 0, x: 60, scale: 0.95 }, { opacity: 1, x: 0, scale: 1, duration: 1.0, ease: "power3.out" }, 0.5);
+
+      // Subtle float motion during Scene 1 hold
+      tl.to("#s1-portrait", { y: -15, duration: 2.0, ease: "sine.inOut", yoyo: true, repeat: 1 }, 1.5);
+
+      // Transition Scene 1 -> Scene 2 (at 4.6s)
+      tl.to("#scene-1", { opacity: 0, y: -30, filter: "blur(8px)", duration: 0.5, ease: "power2.in" }, 4.6);
+      tl.fromTo("#scene-2", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power3.out" }, 5.1);
+
+      // Subtle card drift during Scene 2 hold
+      tl.to("#scene-2 .project-card", { y: -8, stagger: 0.2, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 1 }, 6.2);
+
+      // Transition Scene 2 -> Scene 3 (at 9.6s)
+      tl.to("#scene-2", { opacity: 0, y: -30, filter: "blur(8px)", duration: 0.5, ease: "power2.in" }, 9.6);
+      tl.fromTo("#scene-3", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power3.out" }, 10.1);
+
+      // Subtle pulse during Scene 3 hold
+      tl.to("#scene-3 .project-card", { y: -8, stagger: 0.25, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 1 }, 11.2);
+
+      // Transition Scene 3 -> Scene 4 (at 15.0s)
+      tl.to("#scene-3", { opacity: 0, y: -30, filter: "blur(8px)", duration: 0.5, ease: "power2.in" }, 15.0);
+      tl.fromTo("#scene-4", { opacity: 0, scale: 0.92, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, 15.5);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
